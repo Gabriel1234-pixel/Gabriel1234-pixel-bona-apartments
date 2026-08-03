@@ -1,30 +1,75 @@
 export default function About() {
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-8">
+    <section
+      id="about"
+      className="bg-white py-24 px-6"
+    >
+      <div className="max-w-7xl mx-auto text-center">
+
+        <p className="uppercase tracking-[6px] text-yellow-500 font-semibold">
           About Bona Apartments
+        </p>
+
+        <h2 className="text-5xl font-extrabold text-gray-900 mt-4 leading-tight">
+          Comfortable Living Spaces
+          <br />
+          Designed For You
         </h2>
 
-        <div className="max-w-4xl mx-auto text-center text-gray-700 text-lg leading-8">
-          <p>
-            Bona Apartments is a modern residential development located in
-            Naivasha, Kenya. The project is designed as a five-storey apartment
-            complex that offers comfortable, secure, and affordable living.
-          </p>
+        <div className="w-20 h-1 bg-yellow-500 mx-auto mt-6 rounded-full"></div>
 
-          <p className="mt-6">
-            The first floor has been completed and features one spacious
-            one-bedroom apartment and four well-designed two-bedroom apartments.
-            Future development phases will expand the property while maintaining
-            high standards of quality and comfort.
-          </p>
+        <p className="max-w-3xl mx-auto mt-8 text-gray-600 text-lg leading-8">
+          Bona Apartments offers spacious one and two-bedroom units in a
+          five-storey building strategically located in Naivasha. The first
+          floor is currently complete and ready for occupation, offering
+          modern finishes, secure parking, and a safe environment for
+          individuals and families.
+        </p>
 
-          <p className="mt-6">
-            Residents enjoy modern finishes, reliable water supply, ample
-            parking, and a secure environment ideal for individuals and families.
-          </p>
+        <div className="grid md:grid-cols-4 gap-8 mt-16">
+
+          <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition">
+            <div className="text-5xl mb-4">🛏️</div>
+            <h3 className="text-xl font-bold text-gray-900">
+              1 & 2 Bedroom Units
+            </h3>
+            <p className="text-gray-500 mt-2">
+              Spacious & Modern
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition">
+            <div className="text-5xl mb-4">🏢</div>
+            <h3 className="text-xl font-bold text-gray-900">
+              5 Storey Building
+            </h3>
+            <p className="text-gray-500 mt-2">
+              First Floor Available
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition">
+            <div className="text-5xl mb-4">🚗</div>
+            <h3 className="text-xl font-bold text-gray-900">
+              Ample Parking
+            </h3>
+            <p className="text-gray-500 mt-2">
+              Secure Parking Space
+            </p>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-2xl transition">
+            <div className="text-5xl mb-4">🛡️</div>
+            <h3 className="text-xl font-bold text-gray-900">
+              24/7 Security
+            </h3>
+            <p className="text-gray-500 mt-2">
+              Your Safety Is Our Priority
+            </p>
+          </div>
+
         </div>
+
       </div>
     </section>
   );

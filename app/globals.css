@@ -27,3 +27,27 @@ body {
 html {
   scroll-behavior: smooth;
 }
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:var(--font-inter);
+  background:#07111f;
+}
+
+h1,h2,h3,h4,h5{
+  font-family:var(--font-playfair);
+}
+
+.gold{
+  color:#D4AF37;
+}
+
+.gold-bg{
+  background:#D4AF37;
+}
+
+.dark{
+  background:#07111f;
+}

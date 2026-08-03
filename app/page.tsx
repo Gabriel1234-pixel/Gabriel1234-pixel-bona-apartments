@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Stats from "@/components/Stats";
 import About from "@/components/About";
 import Gallery from "@/components/Gallery";
 import Apartments from "@/components/Apartments";
@@ -19,7 +18,6 @@ export default function Home() {
     <>
       <Navbar />
       <Hero />
-      <Stats />
       <About />
       <Gallery />
       <Apartments />
