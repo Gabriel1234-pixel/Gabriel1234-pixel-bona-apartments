@@ -8,11 +8,15 @@ export async function GET() {
     );
 
     return NextResponse.json(rows);
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    console.error("Database Error:", error);
 
     return NextResponse.json(
-      { message: "Failed to fetch apartments" },
+      {
+        message: "Failed to fetch apartments",
+        error: error.message,
+        code: error.code,
+      },
       { status: 500 }
     );
   }
