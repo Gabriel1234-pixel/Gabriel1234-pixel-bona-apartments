@@ -21,7 +21,11 @@ interface Props {
 export default async function ApartmentDetails({ params }: Props) {
   const { id } = await params;
 
-  const res = await fetch(`http://localhost:3000/api/apartments/${id}`, {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
+  const res = await fetch(`${baseUrl}/api/apartments/${id}`, {
     cache: "no-store",
   });
 

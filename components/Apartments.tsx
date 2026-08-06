@@ -16,12 +16,28 @@ interface Apartment {
 
 export default function Apartments() {
   const [apartments, setApartments] = useState<Apartment[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchApartments() {
-      const res = await fetch("/api/public/apartments");
-      const data = await res.json();
-      setApartments(data);
+      try {
+        const res = await fetch("/api/public/apartments");
+
+        if (!res.ok) {
+          throw new Error("Unable to load apartments right now.");
+        }
+
+        const data = await res.json();
+        const safeApartments = Array.isArray(data) ? data : [];
+        setApartments(safeApartments);
+      } catch (err) {
+        console.error(err);
+        setError("Unable to load apartments right now.");
+        setApartments([]);
+      } finally {
+        setLoading(false);
+      }
     }
 
     fetchApartments();
@@ -50,6 +66,18 @@ export default function Apartments() {
         </div>
 
         {/* Apartment Cards */}
+        {loading && (
+          <p className="text-center text-gray-300">Loading apartments…</p>
+        )}
+
+        {!loading && error && (
+          <p className="text-center text-gray-300">{error}</p>
+        )}
+
+        {!loading && !error && apartments.length === 0 && (
+          <p className="text-center text-gray-300">No apartments available at the moment.</p>
+        )}
+
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10">
 
           {apartments.map((apartment) => (
