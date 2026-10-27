@@ -2,25 +2,75 @@
 
 import { useEffect, useState } from "react";
 
+interface Apartment {
+  id: number;
+  apartment_name: string;
+  apartment_type: string;
+  price: number;
+  status: string;
+}
+
+interface RecentUser {
+  id: number;
+  full_name: string;
+  email: string;
+}
+
+interface DashboardStats {
+  apartments: number;
+  available: number;
+  occupied: number;
+  users: number;
+  recent: Apartment[];
+  recentUsers: RecentUser[];
+}
+
 export default function Dashboard() {
-  const [stats, setStats] = useState({
-  apartments: 0,
-  available: 0,
-  occupied: 0,
-  users: 0,
-  recent: [],
-  recentUsers: [],
-});
+  const [stats, setStats] = useState<DashboardStats>({
+    apartments: 0,
+    available: 0,
+    occupied: 0,
+    users: 0,
+    recent: [],
+    recentUsers: [],
+  });
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadStats() {
-      const res = await fetch("/api/dashboard");
-      const data = await res.json();
-      setStats(data);
+      try {
+        const res = await fetch("/api/dashboard");
+
+        if (!res.ok) {
+          throw new Error(`Dashboard request failed (${res.status})`);
+        }
+
+        const data: DashboardStats = await res.json();
+        setStats(data);
+      } catch (error) {
+        console.error("Failed to load dashboard statistics:", error);
+        setError(
+          "Dashboard data could not be loaded. Check the database environment variables in Vercel, then reload."
+        );
+      }
     }
 
     loadStats();
   }, []);
+
+  if (error) {
+    return (
+      <div>
+        <h1 className="mb-8 text-4xl font-bold">Admin Dashboard</h1>
+        <p
+          role="alert"
+          className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-800"
+        >
+          {error}
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -134,7 +184,7 @@ export default function Dashboard() {
 
             ) : (
 
-              stats.recent.map((apt: any) => (
+              stats.recent.map((apt) => (
 
                 <tr
                   key={apt.id}
@@ -201,7 +251,7 @@ export default function Dashboard() {
 
       ) : (
 
-        stats.recentUsers.map((user: any) => (
+        stats.recentUsers.map((user) => (
 
           <tr
             key={user.id}
